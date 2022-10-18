@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Float, Date, ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -26,17 +26,68 @@ class Address(Base):
     person_id = Column(Integer, ForeignKey('person.id'))
     person = relationship(Person) """
 
-class Item(Base):
+""" class Item(Base):
     __tablename__ = 'item'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     uid = Column(Integer, primary_key=True)
     name = Column(String(250))
+    url = Column(String(250)) """
+
+class People(Base):
+    __tablename__ = 'people'
+    uid = Column(Integer, primary_key=True)
+    name = Column(String(250))
+    heigth = Column(Float)
+    mass = Column(Float)
+    hair_color = Column(String(50))
+    skin_color = Column(String(50))
+    eye_color = Column(String(50))
+    birth_year = Column(Date)
+    gender = Column(String(50))
+    created = Column(Date)
+    edited = Column(Date)
+    homeworld = Column(String(250))
     url = Column(String(250))
 
-Class People(Base):
-    __tablename__ = 'people'
-    heigth = 
+class Planet(Base):
+    __tablename__ = 'planet'
+    uid = Column(Integer, primary_key=True)
+    name = Column(String(250))
+    diameter = Column(Float)
+    rotation_period = Column(Float)
+    rotation_period = Column(Float)
+    gravity = Column(String(50))
+    population = Column(Integer)
+    climate = Column(String(250))
+    terrain = Column(String(250))
+    surface_water = Column(Integer)
+    created = Column(Date)
+    edited = Column(Date)
+    url = Column(String(250))
+
+class Starship(Base):
+    __tablename__ = 'starship'
+    uid = Column(Integer, primary_key=True)
+    model = Column(String(250))
+    starship_class = Column(String(250))
+    manufacturer = Column(String(250))
+    cost_in_credits = Column(Integer)
+    length = Column(Integer)
+    crew = Column(Integer)
+    passengers = Column(Integer)
+    max_atmosphering_speed = Column(Integer)
+    hyperdrive_rating = Column(Float)
+    mglt = Column(Integer)
+    cargo_capacity = Column(Integer)
+    consumables = Column(String(100))
+    pilots = Column(ARRAY(String))
+    created = Column(Date)
+    edited = Column(Date)
+    url = Column(String(250))
+
+
+    
 
     def to_dict(self):
         return {}
